@@ -20,3 +20,9 @@ class Bid(models.Model):
     user = models.CharField(max_length=64)
     title = models.CharField(max_length=64)
     bid = models.IntegerField()
+
+
+class Comment(models.Model):
+    user = models.CharField(max_length=64)
+    comment = models.TextField()
+    listingid = models.IntegerField()
