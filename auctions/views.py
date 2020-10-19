@@ -12,6 +12,13 @@ def index(request):
 
 
 def create_listing(request):
+    if request.method == "POST":
+        title = request.POST["title"]
+        description = request.POST["description"]
+        price = request.POST["price"]
+        image = request.POST["image"]
+        category = request.POST["category"]
+        return HttpResponseRedirect(reverse("index"))
     return render(request, "auctions/create_listing.html")
 
 
