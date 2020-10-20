@@ -16,12 +16,17 @@ def index(request):
 
 def create_listing(request):
     if request.method == "POST":
-        title = request.POST["title"]
-        description = request.POST["description"]
-        price = request.POST["price"]
-        image = request.POST["image"]
-        category = request.POST["category"]
-        return HttpResponseRedirect(reverse("index"))
+        item = Listing()
+        item.title = request.POST["title"]
+        item.description = request.POST["description"]
+        item.price = request.POST["price"]
+        item.image = request.POST["image"]
+        item.category = request.POST["category"]
+        item.save()
+        items = Listing.objects.all()
+        return render(request, "auctions/index.html", {
+            "listings": items
+        })
     return render(request, "auctions/create_listing.html")
 
 
