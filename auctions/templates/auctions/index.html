@@ -4,9 +4,9 @@
     <h2 class="card-title h2">Active Listings</h2>
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 pb-2">
-                {% for listing in listings %}
-                    <div style="background-color: aqua;" class="card card-cascade">
-                    
+            {% for listing in listings %}
+                    <div style="background-color: rgb(122, 36, 179);" class="card card-cascade">
+
                         <div class="view view-cascade overlay ">
                             <img src="{{listing.image}}" style="height:200px">
                         </div>
@@ -22,7 +22,7 @@
                                 Current Price: ${{ listing.price }}
                             </p>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
                 </div>
         </div>
     </div>
