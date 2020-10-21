@@ -6,6 +6,7 @@ class User(AbstractUser):
     pass
 
 # do these classes need id's?
+# no they don't
 
 
 class Listing(models.Model):
