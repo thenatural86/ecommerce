@@ -1,16 +1,25 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
-    <ul>
-        {% for listing in listings %}
-        <li>
-            ID: {{ listing.id }}
-            Title: {{ listing.title }}
-            Description: {{ listing.description }}
-            Current Price: ${{ listing.price }}
-            Image: {{ listing.image }}
-        </li>
-        {% endfor %}
-    </ul>
+    <h2 class="card-title h2">Active Listings</h2>
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 pb-2">
+            <ul>
+                {% for listing in listings %}
+                    <div class="card card-cascade">
+                    <li>
+                        <div class="view view-cascade overlay ">
+                            <img src="{{listing.image}}" style="height:200px">
+                            <!-- Image: {{ listing.image }} -->
+                        </div>
+                        ID: {{ listing.id }}
+                        Title: {{ listing.title }}
+                        Description: {{ listing.description }}
+                        Current Price: ${{ listing.price }}
+                    </li>
+                    {% endfor %}
+                </div>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
