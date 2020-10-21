@@ -6,7 +6,7 @@
     Create Listing
     <div class="text-left">
 
-        <form method="post" action="{% url 'create_listing' %}" id="create-form">
+        <form method="post" action="{% url 'create_listing' %}">
             {% csrf_token %}
             <div class="form-group">
                 <input class="form-control" autofocus type="text" name="title" placeholder="Title">

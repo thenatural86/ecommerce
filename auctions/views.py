@@ -15,15 +15,21 @@ def index(request):
 
 
 def create_listing(request):
+    # if post request
     if request.method == "POST":
+        # create a Listing object and save to var named item
         item = Listing()
+        # pull data from form filled out by user and use as values for object
         item.title = request.POST["title"]
         item.description = request.POST["description"]
         item.price = request.POST["price"]
         item.image = request.POST["image"]
         item.category = request.POST["category"]
+        # save to db
         item.save()
+        # save all listing to items
         items = Listing.objects.all()
+        # print()
         return render(request, "auctions/index.html", {
             "listings": items
         })
