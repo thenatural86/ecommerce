@@ -18,7 +18,9 @@ def index(request):
 def listing(request, listing_id):
     item = Listing.objects.get(id=listing_id)
     print(item)
-    return render(request, "auctions/listing.html")
+    return render(request, "auctions/listing.html", {
+        "item": item
+    })
 
 
 def create_listing(request):
