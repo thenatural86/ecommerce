@@ -8,13 +8,16 @@ from .models import User, Listing
 
 
 def index(request):
-    print()
     return render(request, "auctions/index.html", {
         "listings": Listing.objects.all()
     })
 
+# view details about a particular listing
 
-def listing(request):
+
+def listing(request, listing_id):
+    item = Listing.objects.get(id=listing_id)
+    print(item)
     return render(request, "auctions/listing.html")
 
 
