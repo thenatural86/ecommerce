@@ -5,26 +5,27 @@
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 pb-2">
             {% for listing in listings %}
-                    <div style="background-color: rgb(122, 36, 179);" class="card card-cascade">
-
-                        <div class="view view-cascade overlay ">
-                            <img src="{{listing.image}}" style="height:200px">
-                        </div>
-                        <div class="card-body card-body-cascade text-center">
-                            <!-- ID: {{ listing.id }} -->
-                            <!-- don't need id -->
-                            <h4>
-                                {{ listing.title }}
-                            </h4>
-                            <p>
-                                {{ listing.description }}
-                            </p>
-                            <p>
-                                Current Price: ${{ listing.price }}
-                            </p>
-                        </div>
-                        {% endfor %}
+            <a style="text-decoration: none" href="{% url 'listing' %}">
+                <div style="background-color: rgb(99, 217, 233);" class="card card-cascade">
+                    <div class="view view-cascade overlay ">
+                        <img src="{{listing.image}}" style="height:200px">
+                    </div>
+                    <div class="card-body card-body-cascade text-center">
+                        <!-- ID: {{ listing.id }} -->
+                        <!-- don't need id -->
+                        <h4>
+                            {{ listing.title }}
+                        </h4>
+                        <p>
+                            {{ listing.description }}
+                        </p>
+                        <p>
+                            Current Price: ${{ listing.price }}
+                        </p>
+                    </div>
                 </div>
+            </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

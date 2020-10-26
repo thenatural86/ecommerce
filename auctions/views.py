@@ -14,6 +14,10 @@ def index(request):
     })
 
 
+def listing(request):
+    return render(request, "auctions/listing.html")
+
+
 def create_listing(request):
     # if post request
     if request.method == "POST":
