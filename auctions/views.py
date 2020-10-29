@@ -30,6 +30,8 @@ def listing(request, listing_id):
 
 
 def watch(request):
+    if request.method == "POST":
+        print(listing_id)
     return render(request, "auctions/watch.html")
 
 

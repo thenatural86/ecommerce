@@ -1,6 +1,6 @@
 {% extends "auctions/layout.html" %}
 
-
+{% block body %}
 <div>
     <div>
         <h1>
@@ -23,10 +23,12 @@
     </div>
 </div>
 <div>
-    <button>
+    <button method="post" action="{% url 'watch' %}">
         Add to Watchlist
     </button>
 </div>
 <div>
     <a href="{%url 'index' %}">Back to Active Listings</a>
 </div>
+
+{% endblock %}
