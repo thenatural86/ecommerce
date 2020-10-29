@@ -1,5 +1,32 @@
-{{item.title}}
-{{item.description}}
-{{item.price}}
-{{item.category}}
-<img src="{{item.image}}" style="height:200px">
+{% extends "auctions/layout.html" %}
+
+
+<div>
+    <div>
+        <h1>
+            {{item.title}}  
+        </h1>
+    </div>
+    <div>
+        <img src="{{item.image}}" style="height:300px">
+    </div>
+    <div>
+        <p>
+           Description: {{item.description}}
+        </p>
+    </div>
+    <div>
+        Price: ${{item.price}}
+    </div>
+    <div>
+        Category: {{item.category}}
+    </div>
+</div>
+<div>
+    <button>
+        Add to Watchlist
+    </button>
+</div>
+<div>
+    <a href="{%url 'index' %}">Back to Active Listings</a>
+</div>

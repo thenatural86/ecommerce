@@ -3,6 +3,8 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
 
 from .models import User, Listing
 
@@ -15,12 +17,20 @@ def index(request):
 # view details about a particular listing
 
 
+@login_required
 def listing(request, listing_id):
     item = Listing.objects.get(id=listing_id)
     print(item)
     return render(request, "auctions/listing.html", {
         "item": item
     })
+
+# add/remove items to/from watchlist
+# take in request and listing id
+
+
+def watch(request):
+    return render(request, "auctions/watch.html")
 
 
 def create_listing(request):
