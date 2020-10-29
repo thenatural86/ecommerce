@@ -29,10 +29,11 @@ def listing(request, listing_id):
 # take in request and listing id
 
 
-def watch(request):
-    if request.method == "POST":
-        print(listing_id)
-    return render(request, "auctions/watch.html")
+def watch(request, listing_id):
+
+    return render(request, "auctions/watch.html", {
+        "id": listing_id
+    })
 
 
 def create_listing(request):

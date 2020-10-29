@@ -4,7 +4,7 @@
 <div>
     <div>
         <h1>
-            {{item.title}}  
+            {{item.title}} 
         </h1>
     </div>
     <div>
@@ -23,7 +23,7 @@
     </div>
 </div>
 <div>
-    <a class="btn btn-success btn-lg" href="{% url 'watch' %}">
+    <a class="btn btn-success btn-lg" href="{% url 'watch' item.id %}">
         Add to Watchlist
     </a>
   

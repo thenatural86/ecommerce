@@ -9,5 +9,5 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("create", views.create_listing, name="create_listing"),
     path("listing/<int:listing_id>", views.listing, name="listing"),
-    path("watch", views.watch, name="watch")
+    path("watch/<int:listing_id>", views.watch, name="watch")
 ]
