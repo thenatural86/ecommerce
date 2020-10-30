@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -30,9 +30,16 @@ def listing(request, listing_id):
 
 
 def watch(request, listing_id):
-    print(request.user.username)
-    return render(request, "auctions/watch.html", {
-        "id": listing_id
+    watch = Watchlist()
+    watch.user = request.user.username
+    watch.listingid = listing_id
+    watch.save()
+    return redirect('watchlist', id=listing_id)
+
+
+def watchlist(request, id):
+    return render(request, "auctions/watchlist.html", {
+        "id": id
     })
 
 
