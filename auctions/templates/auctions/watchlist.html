@@ -3,7 +3,9 @@
 {% block body%}
 <div>
     <h1> 
-        yolo
+        {% for item in  watchlist %}
+            <li>{{item}}</li>
+        {% endfor %}
     </h1>
 </div>
 {%endblock %}

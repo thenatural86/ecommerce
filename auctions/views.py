@@ -44,9 +44,10 @@ def remove_watch(request):
 
 
 def watchlist(request):
-    print("watchlist view", id)
+    watchlist = Watchlist.objects.all()
     return render(request, "auctions/watchlist.html", {
-        "id": id
+        "id": id,
+        "watchlist": watchlist
     })
 
 
