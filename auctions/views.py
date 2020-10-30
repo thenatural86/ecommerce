@@ -20,7 +20,7 @@ def index(request):
 @login_required
 def listing(request, listing_id):
     item = Listing.objects.get(id=listing_id)
-    print(item)
+    print("listing view", item)
     return render(request, "auctions/listing.html", {
         "item": item
     })
@@ -34,10 +34,16 @@ def watch(request, listing_id):
     watch.user = request.user.username
     watch.listingid = listing_id
     watch.save()
-    return redirect('watchlist', id=listing_id)
+    watching = Watchlist.objects.filter(
+        id=listing_id, user=request.user.username)
+    print("watch view")
+    return render(request, "auctions/watchlist.html", {
+        "watch": watch
+    })
 
 
 def watchlist(request, id):
+    print("watchlist view", id)
     return render(request, "auctions/watchlist.html", {
         "id": id
     })
