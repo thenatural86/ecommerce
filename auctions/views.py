@@ -36,13 +36,14 @@ def watch(request, listing_id):
     watch.save()
     watching = Watchlist.objects.filter(
         id=listing_id, user=request.user.username)
-    print("watch view")
-    return render(request, "auctions/watchlist.html", {
-        "watch": watch
-    })
+    return HttpResponseRedirect(reverse("index"))
 
 
-def watchlist(request, id):
+def remove_watch(request):
+    print('golow')
+
+
+def watchlist(request):
     print("watchlist view", id)
     return render(request, "auctions/watchlist.html", {
         "id": id
