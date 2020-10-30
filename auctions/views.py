@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-from .models import User, Listing
+from .models import User, Listing, Watchlist
 
 
 def index(request):
@@ -30,7 +30,7 @@ def listing(request, listing_id):
 
 
 def watch(request, listing_id):
-
+    print(request.user.username)
     return render(request, "auctions/watch.html", {
         "id": listing_id
     })

@@ -5,9 +5,6 @@ from django.db import models
 class User(AbstractUser):
     pass
 
-# do these classes need id's?
-# no they don't
-
 
 class Listing(models.Model):
     title = models.CharField(max_length=64)
@@ -26,4 +23,9 @@ class Bid(models.Model):
 class Comment(models.Model):
     user = models.CharField(max_length=64)
     comment = models.TextField()
+    listingid = models.IntegerField()
+
+
+class Watchlist(models.Model):
+    user = models.CharField(max_length=64)
     listingid = models.IntegerField()
