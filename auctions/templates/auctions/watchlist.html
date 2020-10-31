@@ -2,16 +2,13 @@
 
 {% block body%}
 <div>
-    <!-- {{items}} -->
+    <!-- {{items}}  -->
     {% for item in items %}
-        <li>{{item.title}}</li>
+        <!-- <li>{{item}}</li> -->
+        {% for obj in item %}
+            <li>{{obj.title}}</li>
+        {% endfor %}
     {% endfor %}
 </div>
-<!-- <div>
-    <h1> 
-        {% for item in  watchlist %}
-            <li>{{item}}</li>
-        {% endfor %}
-    </h1>
-</div> -->
+
 {%endblock %}
