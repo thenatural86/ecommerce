@@ -45,10 +45,15 @@ def remove_watch(request):
 
 def watchlist(request):
     watchlist = Watchlist.objects.all()
-    return render(request, "auctions/watchlist.html", {
-        "id": id,
-        "watchlist": watchlist
-    })
+    items = []
+    for item in watchlist:
+        items.append(Listing.objects.filter(id=item.listingid))
+        return render(request, "auctions/watchlist.html", {
+            "id": id,
+            "watchlist": watchlist,
+            "items": items
+
+        })
 
 
 def create_listing(request):
