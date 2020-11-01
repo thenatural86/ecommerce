@@ -20,9 +20,12 @@ def index(request):
 @login_required
 def listing(request, listing_id):
     item = Listing.objects.get(id=listing_id)
+    added = Watchlist.objects.filter(
+        listingid=listing_id, user=request.user.username)
     print("listing view", item)
     return render(request, "auctions/listing.html", {
-        "item": item
+        "item": item,
+        "added": added
     })
 
 # add/remove items to/from watchlist
