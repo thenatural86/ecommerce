@@ -48,7 +48,6 @@ def watchlist(request, user):
     items = []
     for item in watchlist:
         items.append(Listing.objects.filter(id=item.listingid))
-        # watch = Watchlist.objects.filter(user=request.user.username)
     return render(request, "auctions/watchlist.html", {
         "watchlist": watchlist,
         "items": items
