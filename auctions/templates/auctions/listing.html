@@ -24,7 +24,7 @@
 </div>
 <div>
     {% if added %}
-    <a class="btn btn-danger btn-lg">Remove from Watchlist</a>
+    <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
     {% else %}
     <a class="btn btn-success btn-lg" href="{% url 'watch' item.id %}">
         Add to Watchlist

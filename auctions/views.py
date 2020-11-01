@@ -42,8 +42,18 @@ def watch(request, listing_id):
     return HttpResponseRedirect(reverse("index"))
 
 
-def remove_watch(request):
-    print('golow')
+def remove_watch(request, listing_id):
+    watch = Watchlist.objects.filter(id=listing_id, user=request.user.username)
+    if watch:
+        watch.delete()
+    item = Listing.objects.get(id=listing_id)
+    added = Watchlist.objects.filter(
+        listingid=listing_id, user=request.user.username)
+    print("listing view", item)
+    return render(request, "auctions/listing.html", {
+        "item": item,
+        "added": added
+    })
 
 
 def watchlist(request, user):
