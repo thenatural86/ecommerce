@@ -7,7 +7,7 @@
             {% for listing in listings %}
             <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
                 <div style="background-color: rgb(99, 217, 233);" class="card card-cascade">
-                    <div class="view view-cascade overlay ">
+                    <div class="view view-cascade overlay">
                         <img src="{{listing.image}}" style="height:200px;">
                     </div>
                     <div class="card-body card-body-cascade text-center">

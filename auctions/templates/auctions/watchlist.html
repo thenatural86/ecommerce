@@ -7,10 +7,16 @@
         {% for item in items %}
             {% for obj in item %}
             <a style="text-decoration: none; color:black" href="{% url 'listing' obj.id %}">
-                <li>{{obj.title}}</li>
-                <li>{{obj.description}}</li>
-                <li>${{obj.price}}</li>
-                <img src="{{obj.image}}" style="height:200px"/>
+                <div style="background-color: rgb(206, 99, 233);" class="card card-cascade">
+                    <div class="view view-cascade overlay">
+                        <img src="{{obj.image}}" style="height:200px"/>
+                    </div>
+                    <div class="card-body card-body-cascade text-center">
+                        <h4>{{obj.title}}</h4>
+                        <p>{{obj.description}}</p>
+                        <p>${{obj.price}}</p>
+                    </div>
+                </div>
             </a>
             {% endfor %}
         {% endfor %}
