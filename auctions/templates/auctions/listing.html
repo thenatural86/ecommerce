@@ -23,10 +23,13 @@
     </div>
 </div>
 <div>
+    {% if added %}
+    <a class="btn btn-danger btn-lg">Remove from Watchlist</a>
+    {% else %}
     <a class="btn btn-success btn-lg" href="{% url 'watch' item.id %}">
         Add to Watchlist
     </a>
-  
+    {% endif %}
 </div>
 <div>
     <a href="{%url 'index' %}">Back to Active Listings</a>
