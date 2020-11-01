@@ -1,16 +1,20 @@
 {% extends "auctions/layout.html" %}
 
 {% block body%}
-<h2> Watchlist</h2>
-<div>
-    {% for item in items %}
-        {% for obj in item %}
-            <li>{{obj.title}}</li>
-            <li>{{obj.description}}</li>
-            <li>${{obj.price}}</li>
-            <img src="{{obj.image}}" style="height:200px"/>
+<h2 class="card-title h2"> Watchlist</h2>
+<div class="row d-flex justify-content-center">
+    <div class="col-xl-7 pb-2">
+        {% for item in items %}
+            {% for obj in item %}
+            <a style="text-decoration: none; color:black" href="{% url 'listing' obj.id %}">
+                <li>{{obj.title}}</li>
+                <li>{{obj.description}}</li>
+                <li>${{obj.price}}</li>
+                <img src="{{obj.image}}" style="height:200px"/>
+            </a>
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    </div>
 </div>
 
 {%endblock %}
