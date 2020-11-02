@@ -37,9 +37,13 @@ def watch(request, listing_id):
     watch.user = request.user.username
     watch.listingid = listing_id
     watch.save()
-    watching = Watchlist.objects.filter(
+    item = Listing.objects.get(id=listing_id)
+    added = Watchlist.objects.filter(
         id=listing_id, user=request.user.username)
-    return HttpResponseRedirect(reverse("index"))
+    return render(request, "auctions/listing.html", {
+        "item": item,
+        "added": added
+    })
 
 
 def remove_watch(request, listing_id):
