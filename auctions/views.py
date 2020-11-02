@@ -37,9 +37,10 @@ def watch(request, listing_id):
     watch.user = request.user.username
     watch.listingid = listing_id
     watch.save()
+
     item = Listing.objects.get(id=listing_id)
     added = Watchlist.objects.filter(
-        id=listing_id, user=request.user.username)
+        listingid=listing_id, user=request.user.username)
     return render(request, "auctions/listing.html", {
         "item": item,
         "added": added
