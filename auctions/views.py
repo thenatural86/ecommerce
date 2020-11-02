@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-from .models import User, Listing, Watchlist
+from .models import User, Listing, Watchlist, Bid
 
 
 def index(request):
@@ -20,7 +20,16 @@ def index(request):
 @login_required
 def listing(request, listing_id):
     if request.method == "POST":
-        print("POST")
+        item = Listing.objects.get(id=listing_id)
+        added = Watchlist.objects.filter(
+            id=listing_id, user=request.user.username)
+        new_bid = int(request.POST["new_bid"])
+        if item.price >= new_bid:
+            return render(request, "auctions/listing.html", {
+                "item": item,
+                "added": added,
+                "message": "Bid higher!"
+            })
     else:
         item = Listing.objects.get(id=listing_id)
         added = Watchlist.objects.filter(

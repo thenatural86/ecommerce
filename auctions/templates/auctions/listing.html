@@ -23,10 +23,14 @@
     </div>
 </div>
 <div>
+{% if message %}
+    <div class="alert alert-{{msg_type}}">{{ message }}</div>
+{% endif %}
+
     <!-- form to bid on item -->
     <form action="{% url 'listing' item.id %}" method="post">
         {% csrf_token %}
-        <input type="number" placeholder="Enter Bid">
+        <input name="new_bid" type="number" placeholder="Enter Bid">
         <input class="btn btn-success btn-lg" type="submit" value="Bid!" >
     </form>
 
