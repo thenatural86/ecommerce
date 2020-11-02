@@ -12,12 +12,14 @@ class Listing(models.Model):
     price = models.IntegerField()
     image = models.TextField()
     category = models.CharField(max_length=64)
+    seller = models.CharField(max_length=64)
 
 
 class Bid(models.Model):
     user = models.CharField(max_length=64)
     title = models.CharField(max_length=64)
     bid = models.IntegerField()
+    listingid = models.IntegerField()
 
 
 class Comment(models.Model):

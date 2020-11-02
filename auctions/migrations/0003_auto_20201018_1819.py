@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bid',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('user', models.CharField(max_length=64)),
                 ('title', models.CharField(max_length=64)),
                 ('bid', models.IntegerField()),
@@ -23,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='listing',
             name='description',
-            field=models.TextField(default=django.utils.timezone.now),
+            field=models.TextField(default=1),
             preserve_default=False,
         ),
     ]
