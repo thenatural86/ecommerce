@@ -32,10 +32,6 @@ def listing(request, listing_id):
 # take in request and listing id
 
 
-def bid(request, listing_id):
-    return render(request, "auctions/bid.html")
-
-
 def watch(request, listing_id):
     watch = Watchlist()
     watch.user = request.user.username
