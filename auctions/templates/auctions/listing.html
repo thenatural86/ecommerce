@@ -23,10 +23,13 @@
     </div>
 </div>
 <div>
-    <!-- add form to bid on item -->
-    <a class="btn btn-success btn-lg" href="{% url 'watch' item.id %}">
-        Bid!
-    </a>
+    <!-- form to bid on item -->
+    <form action="{% url 'listing' item.id %}" method="post">
+        {% csrf_token %}
+        <input type="number" placeholder="Enter Bid">
+        <input class="btn btn-success btn-lg" type="submit" value="Bid!" >
+    </form>
+
     {% if added %}
     <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
     {% else %}
