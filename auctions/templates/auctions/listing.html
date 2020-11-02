@@ -23,6 +23,9 @@
     </div>
 </div>
 <div>
+    <a class="btn btn-success btn-lg" href="{% url 'bid' item.id %}">
+        Bid!
+    </a>
     {% if added %}
     <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
     {% else %}

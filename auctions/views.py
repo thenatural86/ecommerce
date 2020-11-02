@@ -32,12 +32,15 @@ def listing(request, listing_id):
 # take in request and listing id
 
 
+def bid(request, listing_id):
+    return render(request, "auctions/bid.html")
+
+
 def watch(request, listing_id):
     watch = Watchlist()
     watch.user = request.user.username
     watch.listingid = listing_id
     watch.save()
-
     item = Listing.objects.get(id=listing_id)
     added = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
