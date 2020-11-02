@@ -28,7 +28,26 @@ def listing(request, listing_id):
             return render(request, "auctions/listing.html", {
                 "item": item,
                 "added": added,
-                "message": "Bid higher!"
+                "message": "Bid higher!",
+                "msg_type": "danger"
+            })
+        else:
+            item.price = new_bid
+            item.save()
+            old_bid = Bid.objects.filter(listingid=listing_id)
+            if old_bid:
+                old_bid.delete()
+            bid = Bid()
+            bid.user = request.user.username
+            bid.title = item.title
+            bid.listingid = listing_id
+            bid.bid = new_bid
+            bid.save()
+            return render(request, "auctions/listing.html", {
+                "item": item,
+                "added": added,
+                "message": "Successful Bid!",
+                "msg_type": "success"
             })
     else:
         item = Listing.objects.get(id=listing_id)
