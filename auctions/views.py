@@ -20,6 +20,10 @@ def index(request):
 
 def close_bid(request, listing_id):
     print("Winner")
+    item = Listing.objects.get(id=listing_id)
+    return render(request, "auctions/listing.html", {
+        "item": item
+    })
 
 # view details about a particular listing
 

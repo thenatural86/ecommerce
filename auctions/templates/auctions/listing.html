@@ -33,6 +33,11 @@
         <input name="new_bid" type="number" placeholder="Enter Bid">
         <input class="btn btn-success btn-lg" type="submit" value="Bid!" >
     </form>
+    <div>
+        <a class="btn btn-primary btn-lg" href="{% url 'close_bid' item.id %}">
+            Close Bid
+        </a>
+    </div>
 
     {% if added %}
     <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
