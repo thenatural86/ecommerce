@@ -27,7 +27,15 @@ def close_bid(request, listing_id):
     bid_obj = Bid.objects.get(listingid=listing_id)
 
     # fill in winner_obj data via the request, bid_obj and listing_id
-
+    winner_obj.winner = bid_obj.user
+    winner_obj.win_price = bid_obj.bid
+    winner_obj.title = bid_obj.title
+    winner_obj.seller = request.user.username
+    winner_obj.listingid = listing_id
+    # save this winner obj to db
+    winner_obj.save()
+    message = "You won the auction! Well played."
+    msg_type = "success"
     return render(request, "auctions/listing.html", {
         "item": item
     })
@@ -133,6 +141,7 @@ def create_listing(request):
         item.price = request.POST["price"]
         item.image = request.POST["image"]
         item.category = request.POST["category"]
+        item.seller = request.user.username
         # save to db
         item.save()
         # save all listing to items
