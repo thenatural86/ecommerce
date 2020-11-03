@@ -36,9 +36,18 @@ def close_bid(request, listing_id):
     winner_obj.save()
     message = "You won the auction! Well played."
     msg_type = "success"
-    return render(request, "auctions/listing.html", {
-        "item": item
-    })
+
+    # make the listing no longer active.
+    # delete listing, bid and watchlist objects
+    bid_obj.delete()
+    watch_obj = Watchlist.objects.filter(listingid=listing_id)
+    watch_obj.delete()
+    item.delete()
+    return HttpResponseRedirect(reverse("index"))
+
+    # return render(request, "auctions/listing.html", {
+    #     "item": item,
+    # })
 
 # view details about a particular listing
 
