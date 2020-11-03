@@ -43,11 +43,11 @@ def close_bid(request, listing_id):
     watch_obj = Watchlist.objects.filter(listingid=listing_id)
     watch_obj.delete()
     item.delete()
-    return HttpResponseRedirect(reverse("index"))
+    return render(request, "auctions/listing.html", {
+        "item": item,
+        "winner": winner_obj
+    })
 
-    # return render(request, "auctions/listing.html", {
-    #     "item": item,
-    # })
 
 # view details about a particular listing
 

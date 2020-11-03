@@ -27,20 +27,30 @@
     <div class="alert alert-{{msg_type}}">{{ message }}</div>
 {% endif %}
 
-    <!-- form to bid on item -->
+{% if not winner %}
+     <!-- form to bid on item -->
     <form action="{% url 'listing' item.id %}" method="post">
         {% csrf_token %}
         <input name="new_bid" type="number" placeholder="Enter Bid">
         <input class="btn btn-success btn-lg" type="submit" value="Bid!" >
     </form>
-{% if user.username == item.seller %}
-    <div>
-        <a class="btn btn-primary btn-lg" href="{% url 'close_bid' item.id %}">
-            Close Bid
-        </a>
-    </div>
 {% endif %}
 
+{% if user.username == item.seller %}
+    {% if winner %}
+        <a class="alert alert-success">
+            Bid closed
+        </a>
+    {% else %}
+        <div>
+            <a class="btn btn-primary btn-lg" href="{% url 'close_bid' item.id %}">
+                Close Bid
+            </a>
+        </div>
+    {% endif %}
+{% endif %}
+
+{% if not winner %}
     {% if added %}
     <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
     {% else %}
@@ -48,7 +58,9 @@
         Add to Watchlist
     </a>
     {% endif %}
+{% endif %}
 </div>
+
 <div>
     <a href="{%url 'index' %}">Back to Active Listings</a>
 </div>
