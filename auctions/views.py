@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
-from .models import User, Listing, Watchlist, Bid
+from .models import User, Listing, Watchlist, Bid, Winner
 
 
 def index(request):
@@ -14,13 +14,20 @@ def index(request):
         "listings": Listing.objects.all()
     })
 
-# add winner Model, create winner model, get the listing that is being closed, get the bid that is being made
+# create winner model, get the listing that is being closed, get the bid that is being made
 # build out winner object and save to db (.save())
 
 
 def close_bid(request, listing_id):
-    print("Winner")
+    # create winner object
+    winner_obj = Winner()
+    # get the item whose bid is being closed on by getting its id which is the listing_id being passed into this view
     item = Listing.objects.get(id=listing_id)
+    # get the bid that is to be closed via its listingid attr being equal to passed in listing_id
+    bid_obj = Bid.objects.get(listingid=listing_id)
+
+    # fill in winner_obj data via the request, bid_obj and listing_id
+
     return render(request, "auctions/listing.html", {
         "item": item
     })

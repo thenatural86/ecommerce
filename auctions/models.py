@@ -31,3 +31,11 @@ class Comment(models.Model):
 class Watchlist(models.Model):
     user = models.CharField(max_length=64)
     listingid = models.IntegerField()
+
+
+class Winner(models.Model):
+    winner = models.CharField(max_length=64)
+    win_price = models.IntegerField()
+    title = models.CharField(max_length=64)
+    seller = models.CharField(max_length=64)
+    listingid = models.IntegerField()
