@@ -14,8 +14,11 @@ def index(request):
         "listings": Listing.objects.all()
     })
 
+# add winner Model, create winner model, get the listing that is being closed, get the bid that is being made
+# build out winner object and save to db (.save())
 
-def winner(request):
+
+def close_bid(request, listing_id):
     print("Winner")
 
 # view details about a particular listing
