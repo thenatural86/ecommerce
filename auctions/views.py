@@ -14,6 +14,10 @@ def index(request):
         "listings": Listing.objects.all()
     })
 
+
+def winner(request):
+    print("Winner")
+
 # view details about a particular listing
 
 
