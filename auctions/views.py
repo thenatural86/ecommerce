@@ -42,7 +42,7 @@ def close_bid(request, listing_id):
     bid_obj.delete()
     watch_obj = Watchlist.objects.filter(listingid=listing_id)
     watch_obj.delete()
-    item.delete()
+    # item.delete()
     return render(request, "auctions/listing.html", {
         "item": item,
         "winner": winner_obj
