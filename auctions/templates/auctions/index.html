@@ -8,11 +8,9 @@
             <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
                 <div style="background-color: rgb(99, 217, 233);" class="card card-cascade">
                     <div class="view view-cascade overlay">
-                        <img src="{{listing.image}}" style="height:200px;">
+                        <img src="{{listing.image}}" height="200" width="200">
                     </div>
                     <div class="card-body card-body-cascade text-center">
-                        <!-- ID: {{ listing.id }} -->
-                        <!-- don't need id -->
                         <h4>
                             {{ listing.title }}
                         </h4>
