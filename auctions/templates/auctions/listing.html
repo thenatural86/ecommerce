@@ -4,11 +4,16 @@
 <div>
     <div>
         <h1>
-            {{item.title}} 
+            {% if not item.active %}
+                {{item.active}} Bidding has been closed on this item.
+            {% endif %}
+        </h1>
+        <h1>
+            {{item.title}}
         </h1>
     </div>
     <div>
-        <img src="{{item.image}}" style="height:300px">
+        <img src="{{item.image}}" width="400">
     </div>
     <div>
         <p>
