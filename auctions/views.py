@@ -79,38 +79,6 @@ def listing(request, listing_id):
             "added": added
         })
 
-
-def close_bid(request, listing_id):
-    # create winner object
-    winner_obj = Winner()
-    # get the item whose bid is being closed on by getting its id which is the listing_id being passed into this view
-    item = Listing.objects.get(id=listing_id)
-    # get the bid that is to be closed via its listingid attr being equal to passed in listing_id
-    bid_obj = Bid.objects.get(listingid=listing_id)
-
-    # fill in winner_obj data via the request, bid_obj and listing_id
-    winner_obj.winner = bid_obj.user
-    winner_obj.win_price = bid_obj.bid
-    winner_obj.title = bid_obj.title
-    winner_obj.seller = request.user.username
-    winner_obj.listingid = listing_id
-    # save this winner obj to db
-    winner_obj.save()
-    message = "You won the auction! Well played."
-    msg_type = "success"
-
-    # make the listing no longer active.
-    # delete listing, bid and watchlist objects
-    bid_obj.delete()
-    watch_obj = Watchlist.objects.filter(listingid=listing_id)
-    watch_obj.delete()
-    # item.delete()
-    return render(request, "auctions/listing.html", {
-        "item": item,
-        "winner": winner_obj
-    })
-
-
 # add/remove items to/from watchlist
 # take in request and listing id
 
@@ -141,6 +109,37 @@ def remove_watch(request, listing_id):
     return render(request, "auctions/listing.html", {
         "item": item,
         "added": added
+    })
+
+
+def close_bid(request, listing_id):
+    # create winner object
+    winner_obj = Winner()
+    # get the item whose bid is being closed on by getting its id which is the listing_id being passed into this view
+    item = Listing.objects.get(id=listing_id)
+    # get the bid that is to be closed via its listingid attr being equal to passed in listing_id
+    bid_obj = Bid.objects.get(listingid=listing_id)
+
+    # fill in winner_obj data via the request, bid_obj and listing_id
+    winner_obj.winner = bid_obj.user
+    winner_obj.win_price = bid_obj.bid
+    winner_obj.title = bid_obj.title
+    winner_obj.seller = request.user.username
+    winner_obj.listingid = listing_id
+    # save this winner obj to db
+    winner_obj.save()
+    message = "You won the auction! Well played."
+    msg_type = "success"
+
+    # make the listing no longer active.
+    # delete listing, bid and watchlist objects
+    bid_obj.delete()
+    watch_obj = Watchlist.objects.filter(listingid=listing_id)
+    watch_obj.delete()
+    # item.delete()
+    return render(request, "auctions/listing.html", {
+        "item": item,
+        "winner": winner_obj
     })
 
 
