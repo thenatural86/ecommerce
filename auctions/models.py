@@ -13,6 +13,8 @@ class Listing(models.Model):
     image = models.TextField()
     category = models.CharField(max_length=64)
     seller = models.CharField(max_length=64)
+    active = models.BooleanField(default=True)
+    winner = models.CharField(max_length=64, default='')
 
 
 class Bid(models.Model):
