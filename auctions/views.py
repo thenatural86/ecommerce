@@ -119,27 +119,28 @@ def remove_watch(request, listing_id):
 
 
 def close_bid(request, listing_id):
-    winner_obj = Winner()
+    winnerobj = Winner()
     item = Listing.objects.get(id=listing_id)
-    bid_obj = Bid.objects.get(listingid=listing_id)
-    winner_obj.winner = bid_obj.user
-    winner_obj.win_price = bid_obj.bid
-    winner_obj.title = bid_obj.title
-    winner_obj.seller = request.user.username
-    winner_obj.listingid = listing_id
-    winner_obj.save()
-    watch_obj = Watchlist.objects.filter(listingid=listing_id)
+    bidobj = Bid.objects.get(listingid=listing_id)
+
+    winnerobj.winner = bid_obj.user
+    winnerobj.win_price = bid_obj.bid
+    winnerobj.title = bid_obj.title
+    winnerobj.seller = request.user.username
+    winnerobj.listingid = listing_id
+    winnerobj.save()
+    watchobj = Watchlist.objects.filter(listingid=listing_id)
     message = "You won the auction! Well played."
     msg_type = "success"
     item.winner = winner_obj.winner
     item.active = False
     item.save()
     print(winner_obj.winner)
-    watch_obj.delete()
-    bid_obj.delete()
+    watchobj.delete()
+    bidobj.delete()
     return render(request, "auctions/listing.html", {
         "item": item,
-        "winner": winner_obj
+        "winner": winnerobj
     })
 
 
