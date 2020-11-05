@@ -16,25 +16,18 @@ def index(request):
 
 
 def create_listing(request):
-    # if post request
     if request.method == "POST":
-        # create a Listing object and save to var named item
         item = Listing()
-        # pull data from form filled out by user and use as values for object
         item.title = request.POST["title"]
         item.description = request.POST["description"]
         item.price = request.POST["price"]
         item.image = request.POST["image"]
         item.category = request.POST["category"]
         item.seller = request.user.username
-        # save to db
         item.save()
-        # save all listing to items
         items = Listing.objects.all()
         return HttpResponseRedirect(reverse("index"))
     return render(request, "auctions/create_listing.html")
-
-# view details about a particular listing
 
 
 @login_required
@@ -88,10 +81,8 @@ def listing(request, listing_id):
             "added": added
         })
 
-# add/remove items to/from watchlist
-# take in request and listing id
 
-
+@login_required
 def watch(request, listing_id):
     watch = Watchlist()
     watch.user = request.user.username
@@ -106,6 +97,7 @@ def watch(request, listing_id):
     })
 
 
+@login_required
 def remove_watch(request, listing_id):
     watch = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
@@ -131,7 +123,6 @@ def close_bid(request, listing_id):
     winner_obj = Winner()
     item = Listing.objects.get(id=listing_id)
     bid_obj = Bid.objects.get(listingid=listing_id)
-
     winner_obj.winner = bid_obj.user
     winner_obj.win_price = bid_obj.bid
     winner_obj.seller = request.user.username
@@ -162,6 +153,10 @@ def watchlist(request, user):
         "watchlist": watchlist,
         "items": items
     })
+
+
+def comment(request, listing_id):
+    return render(request, "auctions/comment.html")
 
 
 def login_view(request):
