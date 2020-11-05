@@ -74,11 +74,18 @@ def listing(request, listing_id):
         item = Listing.objects.get(id=listing_id)
         added = Watchlist.objects.filter(
             listingid=listing_id, user=request.user.username)
+    try:
         winner_obj = Winner.objects.get(listingid=listing_id)
+        if winner_obj:
+            return render(request, "auctions/listing.html", {
+                "item": item,
+                "added": added,
+                "winner": winner_obj
+            })
+    except:
         return render(request, "auctions/listing.html", {
             "item": item,
-            "added": added,
-            "winner": winner_obj
+            "added": added
         })
 
 # add/remove items to/from watchlist
