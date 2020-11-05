@@ -5,7 +5,9 @@
         <div>
             <h1>
                 {% if not item.active %}
-                    {{item.active}} Bidding has been closed on this item.
+                     Bidding has been closed on this item.
+                     {{winner.title}}
+                     {{winner.winner}}
                 {% endif %}
             </h1>
 
