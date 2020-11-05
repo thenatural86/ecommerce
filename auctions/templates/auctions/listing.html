@@ -48,6 +48,10 @@
             <h4>The winner is {{winner.winner}}</h4>
         {% endif %}
 
+        {% if user.username == winner.winner%}
+            <h4>you won {{user.username}}</h4>
+        {% endif %}
+
         {% if user.username == item.seller %}
             {% if winner %}
                 <a class="alert alert-success">
