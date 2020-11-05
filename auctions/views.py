@@ -53,6 +53,7 @@ def listing(request, listing_id):
             })
         else:
             item.price = new_bid
+            item.active
             item.save()
             old_bid = Bid.objects.filter(listingid=listing_id)
             if old_bid:
@@ -73,10 +74,11 @@ def listing(request, listing_id):
         item = Listing.objects.get(id=listing_id)
         added = Watchlist.objects.filter(
             listingid=listing_id, user=request.user.username)
-
+        winner_obj = Winner.objects.get(listingid=listing_id)
         return render(request, "auctions/listing.html", {
             "item": item,
-            "added": added
+            "added": added,
+            "winner": winner_obj
         })
 
 # add/remove items to/from watchlist
@@ -119,28 +121,28 @@ def remove_watch(request, listing_id):
 
 
 def close_bid(request, listing_id):
-    winnerobj = Winner()
+    winner_obj = Winner()
     item = Listing.objects.get(id=listing_id)
-    bidobj = Bid.objects.get(listingid=listing_id)
+    bid_obj = Bid.objects.get(listingid=listing_id)
 
-    winnerobj.winner = bid_obj.user
-    winnerobj.win_price = bid_obj.bid
-    winnerobj.title = bid_obj.title
-    winnerobj.seller = request.user.username
-    winnerobj.listingid = listing_id
-    winnerobj.save()
-    watchobj = Watchlist.objects.filter(listingid=listing_id)
+    winner_obj.winner = bid_obj.user
+    winner_obj.win_price = bid_obj.bid
+    winner_obj.seller = request.user.username
+    winner_obj.title = bid_obj.title
+    winner_obj.listingid = listing_id
+    winner_obj.save()
+    watch_obj = Watchlist.objects.filter(listingid=listing_id)
     message = "You won the auction! Well played."
     msg_type = "success"
     item.winner = winner_obj.winner
     item.active = False
     item.save()
     print(winner_obj.winner)
-    watchobj.delete()
-    bidobj.delete()
+    watch_obj.delete()
+    bid_obj.delete()
     return render(request, "auctions/listing.html", {
         "item": item,
-        "winner": winnerobj
+        "winner": winner_obj
     })
 
 
