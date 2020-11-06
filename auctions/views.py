@@ -162,8 +162,14 @@ def comment(request, listing_id):
     comment_obj.listingid = listing_id
     comment_obj.save()
     item = Listing.objects.get(id=listing_id)
-
-    return render(request, "auctions/comment.html")
+    comments = Comment.objects.filter(id=listing_id)
+    added = Watchlist.objects.filter(
+        listingid=listing_id, user=request.user.username)
+    return render(request, "auctions/listing.html", {
+        "comments": comments,
+        "item": item,
+        "added": added
+    })
 
 
 def login_view(request):
