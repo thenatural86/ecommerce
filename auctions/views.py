@@ -157,14 +157,15 @@ def watchlist(request, user):
 
 def comment(request, listing_id):
     comment_obj = Comment()
+    comment_obj.comment = request.POST.get("comment")
     comment_obj.user = request.user.username
-    comment_obj.comment = request.POST
     comment_obj.listingid = listing_id
     comment_obj.save()
-    item = Listing.objects.get(id=listing_id)
     comments = Comment.objects.filter(id=listing_id)
+    item = Listing.objects.get(id=listing_id)
     added = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
+
     return render(request, "auctions/listing.html", {
         "comments": comments,
         "item": item,

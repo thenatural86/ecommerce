@@ -55,15 +55,8 @@
                     <h4>you won {{user.username}}</h4>
                 {% endif %}
             
-                    <form action="{% url 'comment' item.id %}" method="post">
-                        {% csrf_token %}
-                        <textarea>
+                
 
-                        </textarea>
-                        <input type="submit">
-                    </form>
-
-                    {{comments}}
             
                 {% if user.username == item.seller %}
                     {% if winner %}
@@ -91,6 +84,22 @@
                 <div>
                     <a href="{%url 'index' %}">Back to Active Listings</a>
                 </div>
+
+
+
+                <form action="{% url 'comment' item.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea class="form=control" name="comment" rows="4" placeholder="Leave a comment"></textarea>
+                    </div>
+                    <input type="submit">
+                </form>
+                {{comments}}
+                {% for comment in comments %}
+                    {{comment.comment}}
+                {% endfor %}
+
+
             </div>
         </div>
     </div>
