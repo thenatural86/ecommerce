@@ -185,6 +185,14 @@ def comment(request, listing_id):
     })
 
 
+def categories(request):
+    categories = []
+    listings = Listing.objects.all()
+    for listing in listings:
+        categories.append(listing.category)
+    return render(request, "auctions/categories.html")
+
+
 def login_view(request):
     if request.method == "POST":
 
