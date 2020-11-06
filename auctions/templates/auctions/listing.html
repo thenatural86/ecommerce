@@ -55,7 +55,8 @@
                     <h4>you won {{user.username}}</h4>
                 {% endif %}
             
-                    <form>
+                    <form action="{% url 'comment' item.id %}" method="post">
+                        {% csrf_token %}
                         <textarea>
 
                         </textarea>
