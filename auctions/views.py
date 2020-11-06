@@ -189,7 +189,7 @@ def categories(request):
     categories = []
     listings = Listing.objects.all()
     for listing in listings:
-        categories.append(listing.category)
+        categories.append(listing.category.capitalize())
     return render(request, "auctions/categories.html", {
         "categories": categories
     })
