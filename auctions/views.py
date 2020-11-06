@@ -64,6 +64,7 @@ def listing(request, listing_id):
                 "msg_type": "success"
             })
     else:
+        comments = Comment.objects.filter(listingid=listing_id)
         item = Listing.objects.get(id=listing_id)
         added = Watchlist.objects.filter(
             listingid=listing_id, user=request.user.username)
@@ -73,12 +74,16 @@ def listing(request, listing_id):
             return render(request, "auctions/listing.html", {
                 "item": item,
                 "added": added,
-                "winner": winner_obj
+                "winner": winner_obj,
+                "comments": comments,
+
             })
     except:
         return render(request, "auctions/listing.html", {
             "item": item,
-            "added": added
+            "added": added,
+            "comments": comments,
+
         })
 
 
@@ -91,9 +96,13 @@ def watch(request, listing_id):
     item = Listing.objects.get(id=listing_id)
     added = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
+    comments = Comment.objects.filter(listingid=listing_id)
+
     return render(request, "auctions/listing.html", {
         "item": item,
-        "added": added
+        "added": added,
+        "comments": comments,
+
     })
 
 
@@ -106,9 +115,13 @@ def remove_watch(request, listing_id):
     item = Listing.objects.get(id=listing_id)
     added = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
+    comments = Comment.objects.filter(listingid=listing_id)
+
     return render(request, "auctions/listing.html", {
         "item": item,
-        "added": added
+        "added": added,
+        "comments": comments,
+
     })
 
     # get the item whose bid is being closed on by getting its id which is the listing_id being passed into this view
@@ -161,11 +174,10 @@ def comment(request, listing_id):
     comment_obj.user = request.user.username
     comment_obj.listingid = listing_id
     comment_obj.save()
-    comments = Comment.objects.filter(id=listing_id)
+    comments = Comment.objects.filter(listingid=listing_id)
     item = Listing.objects.get(id=listing_id)
     added = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
-
     return render(request, "auctions/listing.html", {
         "comments": comments,
         "item": item,
