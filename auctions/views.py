@@ -25,7 +25,7 @@ def create_listing(request):
         item.category = request.POST["category"]
         item.seller = request.user.username
         item.save()
-        items = Listing.objects.all()
+        # items = Listing.objects.all()
         return HttpResponseRedirect(reverse("index"))
     return render(request, "auctions/create_listing.html")
 
@@ -143,8 +143,8 @@ def close_bid(request, listing_id):
     winner_obj.listingid = listing_id
     winner_obj.save()
     watch_obj = Watchlist.objects.filter(listingid=listing_id)
-    message = "You won the auction! Well played."
-    msg_type = "success"
+    # message = "You won the auction! Well played."
+    # msg_type = "success"
     item.winner = winner_obj.winner
     item.active = False
     item.save()
@@ -190,7 +190,9 @@ def categories(request):
     listings = Listing.objects.all()
     for listing in listings:
         categories.append(listing.category)
-    return render(request, "auctions/categories.html")
+    return render(request, "auctions/categories.html", {
+        "categories": categories
+    })
 
 
 def login_view(request):

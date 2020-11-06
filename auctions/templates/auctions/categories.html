@@ -3,7 +3,11 @@
 {% block body %}
     <div>
         <h1>
-            categories
+            {% for category in categories %}
+                <li>
+                    {{category}}
+                </li>
+            {% endfor %}
         </h1>
     </div>
 {% endblock %}
