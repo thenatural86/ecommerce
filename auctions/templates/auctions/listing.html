@@ -44,7 +44,7 @@
                     <form action="{% url 'listing' item.id %}" method="post">
                         {% csrf_token %}
                         <input name="new_bid" type="number" placeholder="Enter Bid">
-                        <input class="btn btn-success btn-lg" type="submit" value="Bid!" >
+                        <input class="btn btn-success btn-sm" type="submit" value="Bid!" >
                     </form>
                 {% else %}
                     <h3 class="alert alert-danger">Bidding is closed on this item</h3>
