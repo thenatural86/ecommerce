@@ -83,7 +83,6 @@ def listing(request, listing_id):
             "item": item,
             "added": added,
             "comments": comments,
-
         })
 
 
