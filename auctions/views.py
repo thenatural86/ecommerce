@@ -189,15 +189,17 @@ def categories(request):
     categories = set()
     listings = Listing.objects.all()
     for listing in listings:
-        categories.add(listing.category.capitalize())
+        categories.add(listing.category)
     return render(request, "auctions/categories.html", {
         "categories": categories
     })
 
 
-def goto_category(request):
-    print("HERE I AM")
-    return render(request, "auctions/goto_category.html")
+def goto_category(request, category):
+    listings = Listing.objects.filter(category=category)
+    return render(request, "auctions/index.html", {
+        "listings": listings
+    })
 
 
 def login_view(request):
