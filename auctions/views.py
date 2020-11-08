@@ -185,10 +185,11 @@ def comment(request, listing_id):
 
 
 def categories(request):
-    categories = []
+    # use set(), instead of List or tuple
+    categories = set()
     listings = Listing.objects.all()
     for listing in listings:
-        categories.append(listing.category.capitalize())
+        categories.add(listing.category.capitalize())
     return render(request, "auctions/categories.html", {
         "categories": categories
     })
