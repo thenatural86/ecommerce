@@ -195,6 +195,11 @@ def categories(request):
     })
 
 
+def goto_category(request):
+    print("HERE I AM")
+    return render(request, "auctions/goto_category.html")
+
+
 def login_view(request):
     if request.method == "POST":
 
