@@ -2,28 +2,30 @@
 
 {% block body %}
     <h2 class="card-title h2">Active Listings</h2>
-    <div class="row d-flex justify-content-center">
-        <div class="col-xl-7 pb-2">
-            {% for listing in listings %}
-            <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
-                <div style="background-color: rgb(99, 217, 233);" class="card card-cascade">
-                    <div class="view view-cascade overlay">
-                        <img src="{{listing.image}}" width="300">
-                    </div>
-                    <div class="card-body card-body-cascade text-center">
-                        <h4>
-                            {{ listing.title }}
-                        </h4>
-                        <p>
-                            {{ listing.description }}
-                        </p>
-                        <p>
-                            Current Price: ${{ listing.price }}
-                        </p>
-                    </div>
+    <div class="card-columns">
+        <!-- <div class="row justify-content-between"> -->
+
+                {% for listing in listings %}
+                <div class="card">
+                    <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
+                        <div style="background-color: rgb(99, 217, 233);">
+                            <h4 class="card-header text-center">
+                                {{ listing.title }}
+                            </h4>
+                            <img class="card-img-top" src="{{listing.image}}" width="300">
+                            <div class="card-body card-body-cascade text-center">
+                               
+                                <p>
+                                    {{ listing.description }}
+                                </p>
+                                <p>
+                                    Current Price: ${{ listing.price }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </a>
-            {% endfor %}
-        </div>
+                {% endfor %}
+        <!-- </div> -->
     </div>
 {% endblock %}
