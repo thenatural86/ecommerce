@@ -1,31 +1,29 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2 class="card-title h2">Active Listings</h2>
+<div class="jumbotron text-center" style="background-color: burlywood; background-image: url('https://imgc.allpostersimages.com/img/print/u-g-PODI9K0.jpg?w=550&h=550&p=0');  background-repeat: no-repeat, repeat;  background-size: auto; background-position: left;" >
+    <h1 class="card-title h1 text-center" style="padding-bottom: 15px; color:white">Active Listings</h1>
+</div>
     <div class="card-columns">
-        <!-- <div class="row justify-content-between"> -->
-
-                {% for listing in listings %}
-                <div class="card">
-                    <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
-                        <div style="background-color: rgb(99, 217, 233);">
-                            <h4 class="card-header text-center">
-                                {{ listing.title }}
-                            </h4>
-                            <img class="card-img-top" src="{{listing.image}}" width="300">
-                            <div class="card-body card-body-cascade text-center">
-                               
-                                <p>
-                                    {{ listing.description }}
-                                </p>
-                                <p>
-                                    Current Price: ${{ listing.price }}
-                                </p>
-                            </div>
+        {% for listing in listings %}
+            <div class="card">
+                <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
+                    <div style="background-color: rgb(177, 229, 236);">
+                        <h4 class="card-header text-center" style="color: black;">
+                            {{ listing.title }}
+                        </h4>
+                        <img class="card-img-top" src="{{listing.image}}">
+                        <div style="color: black;" class="card-body card-body text-center">
+                            <p>
+                                {{ listing.description }}
+                            </p>
+                            <h5 class="text-success bold">
+                                Current Price: ${{ listing.price }}
+                            </h5>
                         </div>
-                    </a>
-                </div>
-                {% endfor %}
-        <!-- </div> -->
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
