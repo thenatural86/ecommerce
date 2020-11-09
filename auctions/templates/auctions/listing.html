@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col" style="background-color: cornflowerblue;">
                 <h1>
                     {% if not item.active %}
                         Bidding has been closed on this item.
@@ -11,30 +11,26 @@
                         {{winner.winner}}
                     {% endif %}
                 </h1>
-                
-                <h1>
+                <h1 class="text-center">
                     {{item.title}}
                 </h1>
                 <div>
-                    <img src="{{item.image}}" width="400">
+                    <img class="rounded mx-auto d-block" src="{{item.image}}" width="400">
                 </div>
-                
-                <div>
+                <div class="text-center">
                     <p>
                         Description: {{item.description}}
                     </p>
-                </div>
-                
-                <div>
-                    Price: ${{item.price}}
-                </div>
-                
-                <div>
-                    Category: {{item.category|title}}
-                </div>
+                    <p>
+                        Price: ${{item.price}}
+                    </p>
+                    <p>
+                        Category: {{item.category|title}}
+                    </p>
+                </div>  
             </div>
             
-            <div class="col">
+            <div class="col" style="background-color: crimson;">
                 {% if message %}
                     <div class="alert alert-{{msg_type}}">{{ message }}</div>
                 {% endif %}
