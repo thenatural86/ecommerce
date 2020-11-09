@@ -1,13 +1,13 @@
 {% extends "auctions/layout.html" %}
 
 {% block body%}
-<div class="jumbotron text-center" style="background-color: burlywood;">
+<div class="jumbotron text-center" style="background-color:lightblue ;">
     <h2 class="card-title h1 text-center" style="padding-bottom: 15px; color:white"> Watchlist</h2>
 </div>
 <div class="card-columns" style="border-radius: 15px;">
         {% for item in items %}
             {% for obj in item %}
-            <div class="card" style="background-color: rgb(216, 228, 230);">
+            <div class="card" style="background-color: white;">
                 <a style="text-decoration: none; color:black" href="{% url 'listing' obj.id %}">
                     <h4 class="card-header text-center" style="color: black;">{{obj.title}}</h4>
                             <img class="card-img-top" src="{{obj.image}}"/>

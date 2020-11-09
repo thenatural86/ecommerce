@@ -1,14 +1,14 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-<div class="jumbotron text-center" style="background-color: burlywood; background-image: url('');  background-repeat: no-repeat, repeat;  background-size: auto; background-position: left;">
+<div class="jumbotron text-center" style="background-color: lightblue; background-image: url('');  background-repeat: no-repeat, repeat;  background-size: auto; background-position: left;">
     <h1 class="card-title h1 text-center" style="padding-bottom: 15px; color:white">Active Listings</h1>
 </div>
     <div class="card-columns" style="border-radius: 15px;">
         {% for listing in listings %}
             <div class="card" style="border-radius: 15px;">
                 <a style="text-decoration: none" href="{% url 'listing' listing.id %}">
-                    <div style="background-color: rgb(216, 228, 230);border-radius: 15px;">
+                    <div style="background-color: white;border-radius: 15px;">
                         <h4 class="card-header text-center" style="color: black;">
                             {{ listing.title }}
                         </h4>

@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col" style="border-right:darkgray 1px solid">
                 <h1>
                     {% if not item.active %}
                         Bidding has been closed on this item.
@@ -11,13 +11,13 @@
                         {{winner.winner}}
                     {% endif %}
                 </h1>
-                <h1 class="text-center h1">
+                <h1 class="text-left h1">
                     {{item.title}}
                 </h1>
-                <div>
-                    <img class="rounded mx-auto d-block" src="{{item.image}}" width="400">
+                <div style="margin-left: -140px;">
+                    <img class="rounded mx-auto d-block" src="{{item.image}}" width="400" >
                 </div>
-                <div class="text-center">
+                <div class="text-left">
                     <p class="mt-3 mb-0 font-weight-bold">
                         Description: 
                     </p>
@@ -38,7 +38,7 @@
                 </div>  
             </div>
             
-            <div class="col text-left" style="background-color: crimson;">
+            <div class="col text-left">
                 {% if message %}
                     <div class="alert alert-{{msg_type}}">{{ message }}</div>
                 {% endif %}
@@ -60,7 +60,7 @@
             
                 
 
-            
+                <div class="row" style="margin-left: -5px;">
                 {% if user.username == item.seller %}
                     {% if winner %}
                         <a class="alert alert-success">
@@ -84,6 +84,8 @@
                         </a>
                     {% endif %}
                 {% endif %}
+            </div>
+
                 <!-- <div>
                     <a href="{%url 'index' %}">Back to Active Listings</a>
                 </div> -->
@@ -93,7 +95,7 @@
                 <form action="{% url 'comment' item.id %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
-                        <textarea class="form=control" name="comment" rows="4" placeholder="Leave a comment"></textarea>
+                        <textarea class="form-control" name="comment" rows="4" placeholder="Leave a comment"></textarea>
                     </div>
                     <input type="submit">
                 </form>
