@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col" style="background-color: cornflowerblue;">
+            <div class="col">
                 <h1>
                     {% if not item.active %}
                         Bidding has been closed on this item.
@@ -11,33 +11,40 @@
                         {{winner.winner}}
                     {% endif %}
                 </h1>
-                <h1 class="text-center">
+                <h1 class="text-center h1">
                     {{item.title}}
                 </h1>
                 <div>
                     <img class="rounded mx-auto d-block" src="{{item.image}}" width="400">
                 </div>
                 <div class="text-center">
-                    <p>
-                        Description: {{item.description}}
+                    <p class="mt-3 mb-0 font-weight-bold">
+                        Description: 
                     </p>
                     <p>
-                        Price: ${{item.price}}
+                        {{item.description}}
                     </p>
+                    
+                    <p class="mt-3 mb-0 font-weight-bold">
+                        Current Price: 
+                    </p>
+                    <h3 class="text-success bold">
+                        ${{item.price}}
+                    </h3>
+
                     <p>
                         Category: {{item.category|title}}
                     </p>
                 </div>  
             </div>
             
-            <div class="col" style="background-color: crimson;">
+            <div class="col text-left" style="background-color: crimson;">
                 {% if message %}
                     <div class="alert alert-{{msg_type}}">{{ message }}</div>
                 {% endif %}
                 
                 {% if item.active %}
-                    <!-- form to bid on item -->
-                    <form action="{% url 'listing' item.id %}" method="post">
+                    <form class="mt-5" action="{% url 'listing' item.id %}" method="post">
                         {% csrf_token %}
                         <input name="new_bid" type="number" placeholder="Enter Bid">
                         <input class="btn btn-success btn-sm" type="submit" value="Bid!" >
@@ -77,9 +84,9 @@
                         </a>
                     {% endif %}
                 {% endif %}
-                <div>
+                <!-- <div>
                     <a href="{%url 'index' %}">Back to Active Listings</a>
-                </div>
+                </div> -->
 
 
 

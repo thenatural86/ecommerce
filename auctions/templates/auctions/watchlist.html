@@ -1,26 +1,24 @@
 {% extends "auctions/layout.html" %}
 
 {% block body%}
-<h2 class="card-title h2"> Watchlist</h2>
-<div class="row d-flex justify-content-center">
-    <div class="col-xl-7 pb-2">
+<div class="jumbotron text-center" style="background-color: burlywood;">
+    <h2 class="card-title h1 text-center" style="padding-bottom: 15px; color:white"> Watchlist</h2>
+</div>
+<div class="card-columns" style="border-radius: 15px;">
         {% for item in items %}
             {% for obj in item %}
-            <a style="text-decoration: none; color:black" href="{% url 'listing' obj.id %}">
-                <div style="background-color: rgb(206, 99, 233);" class="card card-cascade">
-                    <div class="view view-cascade overlay">
-                        <img src="{{obj.image}}" style="height:200px"/>
-                    </div>
-                    <div class="card-body card-body-cascade text-center">
-                        <h4>{{obj.title}}</h4>
-                        <p>{{obj.description}}</p>
-                        <p>${{obj.price}}</p>
-                    </div>
-                </div>
-            </a>
+            <div class="card" style="background-color: rgb(216, 228, 230);">
+                <a style="text-decoration: none; color:black" href="{% url 'listing' obj.id %}">
+                    <h4 class="card-header text-center" style="color: black;">{{obj.title}}</h4>
+                            <img class="card-img-top" src="{{obj.image}}"/>
+                        <div  style="color: black;" class="card-body card-body text-center">
+                            <p>{{obj.description}}</p>
+                            <h5 class="text-success bold">${{obj.price}}</h5>
+                        </div>
+                </a>
+            </div>
             {% endfor %}
         {% endfor %}
-    </div>
 </div>
 
 {%endblock %}
