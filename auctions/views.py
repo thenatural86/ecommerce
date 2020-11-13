@@ -57,10 +57,13 @@ def listing(request, listing_id):
             bid.listingid = listing_id
             bid.bid = new_bid
             bid.save()
-            print(added)
+            comments = Comment.objects.filter(listingid=listing_id)
+            added = Watchlist.objects.filter(
+                listingid=listing_id, user=request.user.username)
             return render(request, "auctions/listing.html", {
                 "item": item,
                 "added": added,
+                "comments": comments,
                 "message": "Successful Bid!",
                 "msg_type": "success"
             })
