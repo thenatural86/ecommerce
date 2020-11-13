@@ -76,10 +76,15 @@ WSGI_APPLICATION = 'commerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2u5btvsroq5nl',
+        'HOST': 'ec2-54-166-114-48.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'zvkguvbdazlpaj',
+        'PASSWORD': 'fbb29e9d1ac8d1a9304f18520f45a1db38ad5d69f5686c6a35b7b47985d40f76'
     }
 }
+
 
 AUTH_USER_MODEL = 'auctions.User'
 
