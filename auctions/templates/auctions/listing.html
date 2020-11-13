@@ -39,27 +39,39 @@
             </div>
             
             <div class="col text-left">
-                {% if message %}
-                    <div class="alert alert-{{msg_type}}">{{ message }}</div>
-                {% endif %}
-                
-                {% if item.active %}
-                    <form class="mt-5" action="{% url 'listing' item.id %}" method="post">
-                        {% csrf_token %}
-                        <input name="new_bid" type="number" placeholder="Enter Bid">
-                        <input class="btn btn-success btn-sm" type="submit" value="Bid!" >
-                    </form>
-                {% else %}
-                    <h3 class="alert alert-danger">Bidding is closed on this item</h3>
-                    <h4>The winner is {{winner.winner}}</h4>
-                {% endif %}
-            
-                {% if user.username == winner.winner%}
-                    <h4>you won {{user.username}}</h4>
-                {% endif %}
-            
-                
 
+                <!-- bid alert message -->
+                {% if message %}
+                    <div class="alert alert-{{msg_type}} " style="margin-left: 2px; border: 1px solid black;">
+                        {{ message }}
+                    </div>
+                {% endif %}
+
+                    <!-- bid form -->
+                    <div class="mt-5" style="margin-left:2px;">
+                        {% if item.active %}
+                            <form action="{% url 'listing' item.id %}" method="post">
+                                {% csrf_token %}
+                                <input name="new_bid" type="number" placeholder="Enter Bid">
+                                <input class="btn btn-success btn-sm" type="submit" value="Bid!" >
+                            </form>
+                        {% else %}
+
+                            <!-- winner message -->
+                            <h3 class="alert alert-danger">Bidding is closed on this item</h3>
+                            <h4>The winner is {{winner.winner}}</h4>
+                        {% endif %}
+                        
+                        <!-- tell winning user they won -->
+                        {% if user.username == winner.winner%}
+                            <h4>you won {{user.username}}</h4>
+                        {% endif %}
+                    </div>
+                   
+                    
+              
+                
+                <!-- close bid -->
                 <div class="row" style="margin-left: -5px;">
                 {% if user.username == item.seller %}
                     {% if winner %}
@@ -84,7 +96,7 @@
                         </a>
                     {% endif %}
                 {% endif %}
-            </div>
+                </div>
 
                 <!-- <div>
                     <a href="{%url 'index' %}">Back to Active Listings</a>

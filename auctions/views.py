@@ -57,6 +57,7 @@ def listing(request, listing_id):
             bid.listingid = listing_id
             bid.bid = new_bid
             bid.save()
+            print(added)
             return render(request, "auctions/listing.html", {
                 "item": item,
                 "added": added,
@@ -76,7 +77,6 @@ def listing(request, listing_id):
                 "added": added,
                 "winner": winner_obj,
                 "comments": comments,
-
             })
     except:
         return render(request, "auctions/listing.html", {
