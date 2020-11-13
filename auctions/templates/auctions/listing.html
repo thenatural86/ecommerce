@@ -4,13 +4,6 @@
     <div class="container">
         <div class="row">
             <div class="col" style="border-right:darkgray 1px solid">
-                <h1>
-                    {% if not item.active %}
-                        Bidding has been closed on this item.
-                        {{winner.title}}
-                        {{winner.winner}}
-                    {% endif %}
-                </h1>
                 <h1 class="text-left h1">
                     {{item.title}}
                 </h1>
@@ -39,7 +32,9 @@
             </div>
             
             <div class="col text-left">
-
+                {% if user.username == winner.winner%}
+                    <h1>You won {{user.username}}</h1>
+                {% endif %}
                 <!-- bid alert message -->
                 {% if message %}
                     <div class="alert alert-{{msg_type}} " style="margin-left: 2px; border: 1px solid black;">
@@ -48,61 +43,49 @@
                 {% endif %}
 
                     <!-- bid form -->
-                    <div class="mt-5" style="margin-left:2px;">
-                        {% if item.active %}
-                            <form action="{% url 'listing' item.id %}" method="post">
-                                {% csrf_token %}
-                                <input name="new_bid" type="number" placeholder="Enter Bid">
-                                <input class="btn btn-success btn-sm" type="submit" value="Bid!" >
-                            </form>
-                        {% else %}
-
+                <div  style="margin-left:2px;">
+                    {% if item.active %}
+                        <form action="{% url 'listing' item.id %}" method="post">
+                            {% csrf_token %}
+                            <input name="new_bid" type="number" placeholder="Enter Bid">
+                            <input class="btn btn-success btn-sm" type="submit" value="Bid!" >
+                        </form>
+                    {% else %}
+                        {% if user.username != winner.winner%}
                             <!-- winner message -->
-                            <h3 class="alert alert-danger">Bidding is closed on this item</h3>
-                            <h4>The winner is {{winner.winner}}</h4>
+                            <h1>The winner is {{winner.winner}}</h1>
+                            <h3 class="alert alert-danger" style="margin-left: -10px;">Bidding is closed on this item</h3>
                         {% endif %}
-                        
-                        <!-- tell winning user they won -->
-                        {% if user.username == winner.winner%}
-                            <h4>you won {{user.username}}</h4>
-                        {% endif %}
-                    </div>
+                    {% endif %}                       
+                </div>
                    
-                    
-              
-                
                 <!-- close bid -->
                 <div class="row" style="margin-left: -5px;">
-                {% if user.username == item.seller %}
-                    {% if winner %}
-                        <a class="alert alert-success">
-                            Bid closed
-                        </a>
-                    {% else %}
-                        <div>
-                            <a class="btn btn-primary btn-lg" href="{% url 'close_bid' item.id %}">
-                                Close Bid
+                    {% if user.username == item.seller %}
+                        {% if winner %}
+                            
+                            <a class="alert alert-success">
+                                Bid closed
                             </a>
-                        </div>
+                        {% else %}
+                            <div>
+                                <a class="btn btn-primary btn-lg" href="{% url 'close_bid' item.id %}">
+                                    Close Bid
+                                </a>
+                            </div>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            
-                {% if item.active %}
-                    {% if added %}
-                        <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
-                    {% else %}
-                        <a class="btn btn-success btn-lg" href="{% url 'watch' item.id %}">
-                            Add to Watchlist
-                        </a>
+                
+                    {% if item.active %}
+                        {% if added %}
+                            <a class="btn btn-danger btn-lg" href="{% url 'remove' item.id %}">Remove from Watchlist</a>
+                        {% else %}
+                            <a class="btn btn-success btn-lg" href="{% url 'watch' item.id %}">
+                                Add to Watchlist
+                            </a>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
                 </div>
-
-                <!-- <div>
-                    <a href="{%url 'index' %}">Back to Active Listings</a>
-                </div> -->
-
-
 
                 <form action="{% url 'comment' item.id %}" method="post">
                     {% csrf_token %}
@@ -111,19 +94,15 @@
                     </div>
                     <input type="submit">
                 </form>
+
                 {% if comments %}
-                <div>
-                    {% for comment in comments %}
-                           <li>{{comment.comment}}</li>
-                    {% endfor %}
-                </div>
+                    <div>
+                        {% for comment in comments %}
+                            <li>{{comment.comment}}</li>
+                        {% endfor %}
+                    </div>
                 {% endif %}
-                
-                
-
-
             </div>
-        </div>
-       
+        </div>  
     </div>
 {% endblock %}
