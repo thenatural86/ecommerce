@@ -14,19 +14,23 @@
         <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
     </head>
     <body>
-        <h1>Wheelers n' Dealers</h1>
-        <div>
-            {% if user.is_authenticated %}
+        <div style="background-color:">
+
+            <div>
+                <h1 style="text-align: center;">Wheelers n' Dealers</h1>
+            </div>
+            <div style="margin-left: 1rem;">
+                {% if user.is_authenticated %}
                 Signed in as <strong>{{ user.username }}</strong>.
-            {% else %}
+                {% else %}
                 Not signed in.
-            {% endif %}
-        </div>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
-            </li>
-            {% if user.is_authenticated %}
+                {% endif %}
+            </div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+                </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_listing' %}">Create Listing</a>
                 </li>
@@ -39,15 +43,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                 </li>
-            {% else %}
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Log In</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
-            {% endif %}
-        </ul>
+                
+                {% endif %}
+            </ul>
+        </div>
         <hr>
         {% block body %}
         {% endblock %}
