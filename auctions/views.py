@@ -35,12 +35,14 @@ def listing(request, listing_id):
     if request.method == "POST":
         item = Listing.objects.get(id=listing_id)
         added = Watchlist.objects.filter(
-            id=listing_id, user=request.user.username)
+            listingid=listing_id, user=request.user.username)
+        comments = Comment.objects.filter(listingid=listing_id)
         new_bid = int(request.POST["new_bid"])
         if item.price >= new_bid:
             return render(request, "auctions/listing.html", {
                 "item": item,
                 "added": added,
+                "comments": comments,
                 "message": "Bid higher!",
                 "msg_type": "danger"
             })
