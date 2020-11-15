@@ -4,7 +4,7 @@
     <div class="jumbotron text-center" style="background-color: lightblue;">
         <h1 class="card-title h1 text-center" style="padding-bottom: 15px; color:white">Create Listing</h1>
     </div>
-    <div class="text-left">
+    <div class="text-center ml-4" style="width:95%;">
         <form method="post" action="{% url 'create_listing' %}">
             {% csrf_token %}
             <div class="form-group">
