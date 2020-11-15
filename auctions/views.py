@@ -15,7 +15,7 @@ def index(request):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def create_listing(request):
     if request.method == "POST":
         item = Listing()
@@ -31,7 +31,7 @@ def create_listing(request):
     return render(request, "auctions/create_listing.html")
 
 
-@login_required
+@login_required(login_url='/login')
 def listing(request, listing_id):
     if request.method == "POST":
         item = Listing.objects.get(id=listing_id)
@@ -92,7 +92,7 @@ def listing(request, listing_id):
         })
 
 
-@login_required
+@login_required(login_url='/login')
 def watch(request, listing_id):
     watch = Watchlist()
     watch.user = request.user.username
@@ -111,7 +111,7 @@ def watch(request, listing_id):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def remove_watch(request, listing_id):
     watch = Watchlist.objects.filter(
         listingid=listing_id, user=request.user.username)
@@ -137,7 +137,7 @@ def remove_watch(request, listing_id):
     # delete listing, bid and watchlist objects
 
 
-@login_required
+@login_required(login_url='/login')
 def close_bid(request, listing_id):
     winner_obj = Winner()
     item = Listing.objects.get(id=listing_id)
@@ -163,7 +163,7 @@ def close_bid(request, listing_id):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def watchlist(request, user):
     watchlist = Watchlist.objects.filter(user=user)
     items = []
@@ -175,7 +175,7 @@ def watchlist(request, user):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def comment(request, listing_id):
     comment_obj = Comment()
     comment_obj.comment = request.POST.get("comment")
@@ -193,7 +193,7 @@ def comment(request, listing_id):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def categories(request):
     # use set(), instead of List or tuple
     categories = set()
@@ -205,7 +205,7 @@ def categories(request):
     })
 
 
-@login_required
+@login_required(login_url='/login')
 def goto_category(request, category):
     listings = Listing.objects.filter(category=category)
     return render(request, "auctions/index.html", {
