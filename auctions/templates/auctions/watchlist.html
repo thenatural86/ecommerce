@@ -7,7 +7,7 @@
 <div class="card-columns" style="border-radius: 15px;">
         {% for item in items %}
             {% for obj in item %}
-            <div class="card" style="background-color: white;">
+            <div class="card" style="background-color: white; width:20rem;margin-left: 5rem; border-radius: 15px;">
                 <a style="text-decoration: none; color:black" href="{% url 'listing' obj.id %}">
                     <h4 class="card-header text-center" style="color: black;">{{obj.title}}</h4>
                             <img class="card-img-top" src="{{obj.image}}"/>
